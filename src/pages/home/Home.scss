@@ -1,0 +1,18 @@
+.home {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5px;
+
+    & .addTask {
+        display: flex;
+    }
+
+    & .tablesContainer{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+}

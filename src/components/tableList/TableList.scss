@@ -1,0 +1,10 @@
+.tableList{
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    min-width: 300px;
+    max-height: 100vh;
+    overflow-y: auto;
+    flex-grow: 1;
+}
