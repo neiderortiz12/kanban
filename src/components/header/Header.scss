@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background-color: rgb(167, 255, 255);
+
+    & .sectionUser {
+        display: flex;
+        align-items: center;
+
+    }
+    & .text {
+        margin: 0 5px 0 0;
+    }
+}

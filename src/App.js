@@ -1,29 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-import Login from './pages/login/Login';
-import Register from './pages/register/Register';
-import Home from './pages/home/Home';
+import AppRouter from './routers/AppRouter';
 
 function App() {
+  const tasks = [
+    { id: 1, title: "First Task", status: "backlog", userId:1 },
+    { id: 2, title: "Second Task", status: "going", userId:1 },
+    { id: 3, title: "Third Task", status: "done", userId:1 },
+  ]
+  const users = [
+    {
+      id: 1,
+      name: "admin",
+      email: "admin@admin.com",
+      pass: "admin"
+    }
+  ]
+  localStorage.setItem("tasks", JSON.stringify(tasks))  
+  localStorage.setItem("users", JSON.stringify(users))  
   return (
     <div className="App">
-      {/* <Login/> */}
-      {/* <Register/> */}
-      <Home/>
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+      <AppRouter/>
     </div>
   );
 }

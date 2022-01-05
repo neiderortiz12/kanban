@@ -2,21 +2,9 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import TableList from '../../components/tableList/TableList';
 import './Home.scss';
-import { useState } from 'react';
-
-
-const Intasks = [
-    { _id: 1, title: "First Task", status: "backlog" },
-    { _id: 2, title: "Second Task", status: "backlog" },
-    { _id: 3, title: "Third Task", status: "backlog" },
-    { _id: 4, title: "Fourth Task", status: "going" },
-    { _id: 5, title: "Fifth Task", status: "going" },
-    { _id: 6, title: "Sixth Task", status: "going" },
-    { _id: 7, title: "Seventh Task", status: "done" },
-    { _id: 8, title: "Eighth Task", status: "done" },
-    { _id: 9, title: "Ninth Task", status: "done" },
-    { _id: 10, title: "Tenth Task", status: "done" },
-];
+import { useEffect, useState } from 'react';
+import Header from '../../components/header/Header';
+import { useNavigate } from 'react-router-dom';
 
 const labels = ["backlog", "going", "done"];
 const labelsMap = {
@@ -27,20 +15,31 @@ const labelsMap = {
 
 
 const Home = () => {
-    const [tasks, setTasks] = useState(Intasks)
+    const user = JSON.parse(localStorage.getItem("user"))
+    const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")))
     const [newTask, setNewTask] = useState('')
+    const navigate = useNavigate()
+    useEffect(()=>{
+        localStorage.setItem("tasks", JSON.stringify(tasks))
+    },[tasks])
+    if(!user || localStorage.getItem("sesion") !== "true"){
+        navigate("/login")
+    }
+    useEffect(()=>{
+        if(localStorage.getItem("sesion") === "false"){
+            navigate("/login")
+        }
+    }, [navigate])
 
     const update = (id, status) => {
         if(!id || !labels.includes(status)){
             return
         }
-        console.log("cambiar ", id, status)
         const newList = tasks.map(item => (
-            item._id === id ? { ...item, status: status }
+            item.id === id ? { ...item, status: status }
                 : item
         ))
         setTasks(newList)
-        console.log("cambiar ", id, status, newList)
     }
 
     const addTask = () => {
@@ -48,13 +47,18 @@ const Home = () => {
             return
         }
 
-        const newList = [{id: Date.now, title: newTask, status: 'backlog'}, ...tasks]
+        const newList = [{id: Date.now(), title: newTask, status: 'backlog', userId: user.id}, ...tasks]
 
+        setTasks(newList)
+    }
+    const deleteTask = (id) => {
+        const newList = tasks.filter(item => item.id  !== id)
         setTasks(newList)
     }
 
     return (
         <div className='home'>
+            <Header/>
             <div className='addTask'>
                 <TextField
                     id="outlined-basic"
@@ -80,10 +84,11 @@ const Home = () => {
                         <TableList
                             key={index}
                             stateTask={stateTask}
-                            tasksList={tasks}
+                            tasksList={tasks.filter(item => item.userId === user.id)}
                             labelsMap={labelsMap}
                             labels={labels}
                             update={update}
+                            deleteTask={deleteTask}
                         />
                     ))
                 }

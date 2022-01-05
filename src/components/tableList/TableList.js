@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import Item from "../item/Item";
 import './TableList.scss'
 
-const TableList = ({ stateTask, tasksList, labelsMap, labels, update }) => {
+const TableList = ({ stateTask, tasksList, labelsMap, labels, update, deleteTask }) => {
     return (
         <div className="tableList">
             <Typography
@@ -23,6 +23,7 @@ const TableList = ({ stateTask, tasksList, labelsMap, labels, update }) => {
                                 stateTask={stateTask}
                                 labels={labels}
                                 update={update}
+                                deleteTask={deleteTask}
                             />
                         ))
                 }

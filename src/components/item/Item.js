@@ -4,18 +4,19 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from "react";
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import './Item.scss'
 
 
 
-const Item = ({ item, labelsMap, stateTask, labels, update }) => {
+const Item = ({ item, labelsMap, stateTask, labels, deleteTask, update}) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = (status) => {
-        update(item._id, status)
+        update(item.id, status)
         setAnchorEl(null);
     };
     return (
@@ -23,11 +24,12 @@ const Item = ({ item, labelsMap, stateTask, labels, update }) => {
             <Typography
                 variant="subtitle1"
                 gutterBottom
-                component="h2"
+                component="div"
             >
                 {item.title}
             </Typography>
             <div>
+                <ClearOutlinedIcon onClick={() => deleteTask(item.id)}/>
                 <MoreHorizOutlinedIcon
                     id="basic-button"
                     aria-controls={open ? 'basic-menu' : undefined}
