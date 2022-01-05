@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/neiderortiz12/kanban/static/css/main.ffe3b19a.css",
+    "main.js": "/neiderortiz12/kanban/static/js/main.ca18db32.js",
+    "static/js/787.5bd14def.chunk.js": "/neiderortiz12/kanban/static/js/787.5bd14def.chunk.js",
+    "index.html": "/neiderortiz12/kanban/index.html",
+    "main.ffe3b19a.css.map": "/neiderortiz12/kanban/static/css/main.ffe3b19a.css.map",
+    "main.ca18db32.js.map": "/neiderortiz12/kanban/static/js/main.ca18db32.js.map",
+    "787.5bd14def.chunk.js.map": "/neiderortiz12/kanban/static/js/787.5bd14def.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ffe3b19a.css",
+    "static/js/main.ca18db32.js"
+  ]
+}
